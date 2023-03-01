@@ -1,0 +1,36 @@
+﻿{% extends 'starwars/root.html' %} {% block title %}Collections{% endblock %} 
+{% block content %} {% load static %}
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xl-2 col-lg-4 col-md-12 col-12">
+      <h1>Collections</h1>
+    </div>
+    <div class="col-xl-2 col-lg-4 col-md-12 col-12">
+      <form action="{% url 'starwars:download_data' %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-color-3">Fetch</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-12">
+      {% if datasets %}
+      <div class="list-group">
+        {% for dataset in datasets %}
+          <a href="{% url 'starwars:collections_detail' dataset.id %}" class="list-group-item list-group-item-action color-3">
+            {{ dataset.date }}
+          </a>
+        {% endfor %}
+        </div>
+      {% else %}
+        <p>No datasets have been downloaded yet.</p>
+      {% endif %} 
+    </div>
+  </div>
+</div>
+
+{% endblock %}

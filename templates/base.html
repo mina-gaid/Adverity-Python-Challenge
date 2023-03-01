@@ -1,0 +1,128 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  {# Meta Compatibility #}
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="" />
+
+  {# Meta SEO #}
+  <meta name="robots" content="index, follow">
+  <meta name="application-name" content="Star Wars Explorer">
+  <meta name="subject" content="Social">
+  <meta name="description" content="">
+  <meta name="classification" content="">
+  <meta name="keywords" content="">
+  <meta name="geography" content="">
+  <meta name="language" content="">
+  <meta name="distribution" content="global">
+  <meta name="city" content="">
+  <meta name="country" content="">
+  <meta name="author" content="">
+
+  {# Open Graph / Facebook #}
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="">
+  <meta property="og:title" content="">
+  <meta property="og:description" content="">
+  <meta property="og:image" content="{% static 'favicons/preview.jpg' %}">
+
+  {# Twitter #}
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="">
+  <meta property="twitter:title" content="">
+  <meta property="twitter:description" content="">
+  <meta property="twitter:image" content="{% static 'favicons/preview.jpg' %}">
+
+  {# Favicons #}
+  <link rel="apple-touch-icon" sizes="57x57" href="{% static 'favicons/apple-icon-57x57.png' %}">
+  <link rel="apple-touch-icon" sizes="60x60" href="{% static 'favicons/apple-icon-60x60.png' %}">
+  <link rel="apple-touch-icon" sizes="72x72" href="{% static 'favicons/apple-icon-72x72.png' %}">
+  <link rel="apple-touch-icon" sizes="76x76" href="{% static 'favicons/apple-icon-76x76.png' %}">
+  <link rel="apple-touch-icon" sizes="114x114" href="{% static 'favicons/apple-icon-114x114.png' %}">
+  <link rel="apple-touch-icon" sizes="120x120" href="{% static 'favicons/apple-icon-120x120.png' %}">
+  <link rel="apple-touch-icon" sizes="144x144" href="{% static 'favicons/apple-icon-144x144.png' %}">
+  <link rel="apple-touch-icon" sizes="152x152" href="{% static 'favicons/apple-icon-152x152.png' %}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicons/apple-icon-180x180.png' %}">
+  <link rel="apple-touch-icon-precomposed" sizes="250x250" href="{% static 'favicons/icon-big.png' %}">
+  <link rel="icon" type="image/png" sizes="192x192" href="{% static 'favicons/android-icon-192x192.png' %}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicons/favicon-32x32.png' %}">
+  <link rel="icon" type="image/png" sizes="96x96" href="{% static 'favicons/favicon-96x96.png' %}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicons/favicon-16x16.png' %}">
+  <link rel="shortcut icon" type="image/png" href="{% static 'favicons/icon-big.png' %}">
+  <link rel="icon" type="image/png" href="{% static 'favicons/icon-big.png' %}">
+
+  {# Apple Settings #}
+  <meta name='mobile-web-app-capable' content='yes'>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="dark" />
+  <meta name="format-detection" content="telephone=yes, date=yes, address=yes, email=yes, url=yes">
+
+  {# PWA Manifest #}
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="manifest" href="{% static 'manifest.json' %}">
+
+  {# Bootstrap CSS #}
+  <link rel="stylesheet" type="text/css" href="{% static 'libraries/bootstrap/bootstrap-themed.css' %}">
+
+  {# Page title #}
+  <title>{% block title %} {% endblock %} | Star Wars Explorer</title>
+
+</head>
+
+<body class="d-flex h-100 flex-column">
+
+  {# Wrapper #}
+  <div class="wrapper flex-grow-1">
+
+    {# Navbar #}
+      <nav class="navbar navbar-expand-lg navbar-light bg-color-1">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="{% url 'starwars:collections_list' %}">Star Wars Explorer</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a href="{% url 'starwars:collections_list' %}" class="nav-link text-color-2" aria-current="page">Collections</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+    {# Content #}
+    <main class="my-5">
+      {% block content %} {% endblock %}
+    </main>
+
+  </div>
+
+  {# START JS Scripts #}
+
+  {# Bootstrap Scripts #}
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+  {# Pace Loader #}
+  {% include "include/pace-loader.html" %}
+
+  {# FriendlyCaptcha #}
+  {% block friendly-captcha %}{% endblock %}
+
+  {# Cookie Banner #}
+  {% include "include/cookie-consent.html" %}
+
+  {# End JS Scripts #}
+
+</body>
+
+</html>

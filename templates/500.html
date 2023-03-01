@@ -1,0 +1,9 @@
+{% block content %}
+
+{% with title="500" %}
+{% with message="Internal server error" %}
+{% include "error.html" %}
+{% endwith %}
+{% endwith %}
+
+{% endblock %}

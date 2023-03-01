@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: starwars-explorer
+spec:
+  selector:
+    matchLabels:
+      app: starwars-explorer
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: starwars-explorer
+        version: v1
+    spec:
+      containers:
+        - name: starwars-explorer
+          image: __IMAGE__
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8000
+      serviceAccountName: starwars-explorer-pipeline-runner
+      serviceAccount: starwars-explorer-pipeline-runner
+#test
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: starwars-explorer-service
+spec:
+  selector:
+    app: starwars-explorer
+  ports:
+    - port: 8000
+      name: http

@@ -1,0 +1,9 @@
+{% block content %}
+
+{% with title="403" %}
+{% with message="Access to page is forbidden" %}
+{% include "error.html" %}
+{% endwith %}
+{% endwith %}
+
+{% endblock %}

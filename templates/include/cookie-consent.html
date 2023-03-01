@@ -1,0 +1,16 @@
+{% load static %}
+
+{# Cookie Consent #}
+<div id="cookie-banner" class="col-12 position-fixed fixed-bottom">
+    <div class="alert alert-light text-center mb-0" specialisation="alert">
+        <span class="mx-2">&#x1F36A;</span> This website uses third-party cookies to ensure you get the best experience
+        on
+        our website.
+        <a href="" target="blank">Learn more</a>
+        <button type="button" class="btn btn-md btn-dark mx-3 px-4" onclick="window.hideCookieBanner()">Got
+            It</button>
+    </div>
+</div>
+
+{# Cookie Consent JS #}
+<script async src="{% static 'libraries-custom/cookie-consent/js/cookie-consent.js' %}"></script>

@@ -1,0 +1,32 @@
+@import "utilities.scss";
+@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
+
+// Base styling
+$body-bg: $light;
+
+// Typography
+$font-weight: 700;
+$font-weight-bold: 900;
+$hr-color: inherit;
+$hr-opacity: 0.1;
+$font-family-base: sans-serif, Roboto;
+
+// Border
+$enable-rounded: true;
+$border-radius: 0.4em;
+$border-radius-custom: 50em;
+$border-color: $dark;
+
+// Links
+$link-color: $color-2;
+$link-decoration: none;
+$link-hover-color: darken($link-color, 15%);
+$link-hover-decoration: underline;
+$component-active-color: $light;
+$component-active-bg: darken($link-color, 30%);
+
+// Pagination
+$pagination-color: $dark;
+$pagination-hover-color: lighten($dark, 15%);
+
+// Add SASS theme customizations here..

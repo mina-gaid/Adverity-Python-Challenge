@@ -1,0 +1,106 @@
+﻿{% extends 'starwars/root.html' %} {% block title %}{{ dataset.filename }}
+{% endblock %} {% block content %} {% load static %}
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-12">
+      <h1>{{ dataset.filename }}</h1>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-12">
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr class="table-active text-color-2">
+            <th>Name</th>
+            <th>Height</th>
+            <th>Mass</th>
+            <th>Eye Color</th>
+            <th>Hair Color</th>
+            <th>Skin Color</th>
+            <th>Birth Year</th>
+            <th>Gender</th>
+            <th>Homeworld</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for character in characters %}
+          <tr>
+            <td>{{ character.name }}</td>
+            <td>{{ character.height }}</td>
+            <td>{{ character.mass }}</td>
+            <td>{{ character.eye_color }}</td>
+            <td>{{ character.hair_color }}</td>
+            <td>{{ character.skin_color }}</td>
+            <td>{{ character.birth_year }}</td>
+            <td>{{ character.gender }}</td>
+            <td>{{ character.homeworld }}</td>
+            <td>{{ character.date }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      {# Custom Pagination #}
+        <button class="btn btn-outline-color-2" id="load-more-button" data-url="{{ characters.next_page_number }}/">Load More</button>
+      
+        {# Default Django Pagination #}
+        <div class="pagination">
+          <span class="step-links">
+              {% if characters.has_previous %}
+                  <a href="?page={{ characters.previous_page_number }}">
+                    Previous
+                  </a>
+              {% endif %}
+              <span class="current-page">
+                {{ characters.number }} of {{ characters.paginator.num_pages }}.
+              </span>
+              {% if characters.has_next %}
+                  <a href="?page={{ characters.next_page_number }}">
+                    Next
+                  </a>
+              {% endif %}
+          </span>
+        </div>
+    </div>
+  </div>
+</div>
+
+{# Custom Pagination JS - Load More #}
+<script>
+document.getElementById("load-more-button").addEventListener("click", function(){
+    var xhr = new XMLHttpRequest();
+    var url = this.getAttribute("data-url");
+    xhr.onreadystatechange = function() {
+        if (this.readyState === 4 && this.status === 200) {
+            var parser = new DOMParser();
+            var htmlDoc = parser.parseFromString(this.responseText, 'text/html');
+            var newRows = htmlDoc.querySelectorAll('tbody tr');
+            var tableBody = document.querySelector('tbody');
+            newRows.forEach(function(row) {
+                tableBody.appendChild(row);
+            });
+            if (htmlDoc.querySelector('#load-more-button')) {
+                var newButton = htmlDoc.querySelector('#load-more-button');
+                newButton.addEventListener('click', loadMore);
+                document.getElementById("load-more-button").replaceWith(newButton);
+            } else {
+                document.getElementById("load-more-button").style.display = 'none';
+            }
+        }
+    };
+    xhr.open('GET', url, true);
+    xhr.send();
+});
+
+function loadMore() {
+    this.style.display = 'none';
+    document.getElementById("loading-indicator").style.display = 'block';
+}
+</script>
+
+{% endblock %}

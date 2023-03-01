@@ -1,0 +1,9 @@
+{% block content %}
+
+{% with title="404" %}
+{% with message="Page not found. Check the Link or URL used to get here" %}
+{% include "error.html" %}
+{% endwith %}
+{% endwith %}
+
+{% endblock %}

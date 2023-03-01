@@ -1,0 +1,9 @@
+{% block content %}
+
+{% with title="400" %}
+{% with message="Unable to process the request" %}
+{% include "error.html" %}
+{% endwith %}
+{% endwith %}
+
+{% endblock %}

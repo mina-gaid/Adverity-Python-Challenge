@@ -1,0 +1,27 @@
+$white: #fff !default; // White color
+$black: #000 !default; // Black color
+$yellow: #ffe600 !default; // Yellow color
+$blue: #3c5da3 !default; // Blue color
+$green: #006305 !default; // Green color
+
+$colors: (
+  "white": $white,
+  "black": $black,
+  "yellow": $yellow,
+  "blue": $blue,
+  "green": $green,
+) !default;
+
+$light: $white;
+$dark: $black;
+$color-1: $yellow;
+$color-2: $blue;
+$color-3: $green;
+
+$theme-colors: (
+  "light": $light,
+  "dark": $dark,
+  "color-1": $color-1,
+  "color-2": $color-2,
+  "color-3": $color-3,
+);
